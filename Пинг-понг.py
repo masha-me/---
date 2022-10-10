@@ -1,5 +1,5 @@
 from pygame import *
-clock = time.Clock()
+# clock = time.Clock()
 main = display.set_mode((700, 500))
 display.set_caption('Пинг-Понг')
 class Game_Sprite(sprite.Sprite):
