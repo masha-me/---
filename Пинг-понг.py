@@ -22,7 +22,6 @@ class Player(sprite.Sprite):
         self.rect.y = y1
     def blit1(self):
         main.blit(self.image, (self.rect.x, self.rect.y))
-    '''
     def update_left(self):
         keys = key.get_pressed()
         if keys[K_w] == True and self.rect.y > 0:
@@ -35,7 +34,6 @@ class Player(sprite.Sprite):
             self.rect.y -= self.speed
         if keys[K_l] == True and self.rect.y < 400:
             self.rect.y += self.speed
-            '''
 rocket1 = Player([255, 255, 255], 3, 10, 200, 20, 100)
 rocket2 = Player([255, 255, 255], 3, 670, 200, 20, 100)
 ball = Game_Sprite('asteroid.png', 5, 325, 225, 50, 50)
