@@ -34,14 +34,30 @@ class Player(sprite.Sprite):
             self.rect.y -= self.speed
         if keys[K_l] == True and self.rect.y < 400:
             self.rect.y += self.speed
+class Ball(Game_Sprite):
+    def __init__(self, name_picture, speed, x1, y1, size_x, size_y, speed_x, speed_y):       
+        Game_Sprite.__init__(self, name_picture, speed, x1, y1, size_x, size_y)
+        self.speed_x = speed_x
+        self.speed_y = speed_y
+    def update(self):
+        self.rect.x += self.speed_x
+        self.rect.y += self.speed_y
+        if self.rect.y >= 450 or self.rect.y <= 0:
+            self.speed_y *= -1
 rocket1 = Player([255, 255, 255], 3, 10, 200, 20, 100)
-rocket2 = Player([255, 255, 255], 3, 670, 200, 20, 100)
-ball = Game_Sprite('asteroid.png', 5, 325, 225, 50, 50)
+rocket2 = Player([0, 0, 0], 3, 670, 200, 20, 100)
+ball = Ball('pngegg.png', 5, 325, 225, 50, 50, 1, 1)
 flag = True
 flag2 = True
 while flag != False:
     if flag2 == True:
-        main.fill((99, 184, 255))
+        main.fill((107, 142, 35))
+        ball.update()
+        if sprite.collide_rect(ball, rocket2):
+            ball.speed_x *= -1
+        if sprite.collide_rect(ball, rocket1):
+            ball.speed_x *= -1
+        
         ball.blit1()
         rocket1.update_left()
         rocket1.blit1()
@@ -54,3 +70,7 @@ while flag != False:
             flag = False
     clock.tick(60)
     display.update()
+
+
+
+
