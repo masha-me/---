@@ -42,11 +42,22 @@ class Ball(Game_Sprite):
     def update(self):
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y
+        global flag2
         if self.rect.y >= 450 or self.rect.y <= 0:
             self.speed_y *= -1
+        if self.rect.x <= 0:
+            flag2 = False
+            main.blit(font2, (250, 210))
+        if self.rect.x >= 650:
+            flag2 = False
+            main.blit(font3, (250, 210))
+font.init()
+font1 = font.SysFont('Arial', 40)
+font2 = font1.render('Player №1 проиграл!... :)', True, (255, 255, 255))
+font3 = font1.render('Player №2 проиграл!... :)', True, (0, 0, 0))
 rocket1 = Player([255, 255, 255], 3, 10, 200, 20, 100)
 rocket2 = Player([0, 0, 0], 3, 670, 200, 20, 100)
-ball = Ball('pngegg.png', 5, 325, 225, 50, 50, 1, 1)
+ball = Ball('pngegg.png', 5, 325, 225, 50, 50, 4, 4)
 flag = True
 flag2 = True
 while flag != False:
@@ -57,7 +68,7 @@ while flag != False:
             ball.speed_x *= -1
         if sprite.collide_rect(ball, rocket1):
             ball.speed_x *= -1
-        
+
         ball.blit1()
         rocket1.update_left()
         rocket1.blit1()
